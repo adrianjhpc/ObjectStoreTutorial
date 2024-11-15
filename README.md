@@ -10,16 +10,18 @@ This contains material contributed from a number of authors and organsations, in
 
 ## Timetable
 
-
-* 08.30 Introduction
-* 08.45 Storage hardware and software
-* 09.00 Practical: Benchmarking different storage approaches
-* 09.30 Overview of object stores, DAOS, and Ceph
-* 10.00 Break
-* 10.30 DAOS API and programming object stores
-* 11.00 Ceph storage interfaces and librados
-* 11.30 Exploiting DAOS and/or Ceph for applications
-* 12.00 Summary and finish
+* 13.30 Introduction
+* 13.40 Object storage and storage hardware
+* 14.00 Practical: Benchmarking different storage approaches
+* 14.15 Overview of DAOS
+* 14.35 DAOS programming API
+* 15.00 Break
+* 15.30 Practical: Hands-on DAOS programming
+* 15.45 Ceph storage interfaces and librados
+* 16.15 Librados programming API
+* 16.25 Practical: Using DAOS and/or Ceph for applications
+* 16.55 Designing for object storage
+* 17.00 Summary and finish
 
 ## Running
 
