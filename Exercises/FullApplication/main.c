@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 #include "hdf5.h"
 #include "mpi.h"
 
@@ -41,17 +41,21 @@ int main(int argc, char *argv[]) {
 
   hid_t file_identifier;
 
-  int MyPE, NumPEs;
+  int mpi_rank, num_procs;
   int ierr;
 
+  double start_time, end_time;
+ 
   MPI_Status stat;
 
   MPI_Init(&argc, &argv);
   
-  ierr = MPI_Comm_size(MPI_COMM_WORLD, &NumPEs);
-  ierr = MPI_Comm_rank(MPI_COMM_WORLD, &MyPE);
+  ierr = MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+  ierr = MPI_Comm_rank(MPI_COMM_WORLD, &mpi_rank);
 
-  printf("proc %d out of %d\n", MyPE, NumPEs);
+  if(mpi_rank == 0){
+    printf("Running on %d MPI processes\n", num_procs);
+  }
 
   nx = 10;
   ny = 10;
@@ -66,7 +70,11 @@ int main(int argc, char *argv[]) {
     data[i] = dataArray + i*(nx+2*ng);
   }
 
-  initialise_array(nx, ny, ng, MyPE, data);
+  initialise_array(nx, ny, ng, mpi_rank, data);
+
+  MPI_Barrier(MPI_COMM_WORLD);
+
+  start_time = MPI_Wtime();
 
   acc_template = H5Pcreate(H5P_FILE_ACCESS);
 
@@ -100,7 +108,7 @@ int main(int argc, char *argv[]) {
 		      dataspace, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
 
   
-  if (MyPE == 0) {
+  if (mpi_rank == 0) {
     err = H5Dwrite(dataset, string_type, H5S_ALL, dataspace, 
 		   H5P_DEFAULT, comment);
   }
@@ -108,15 +116,19 @@ int main(int argc, char *argv[]) {
   H5Sclose(dataspace);
   H5Dclose(dataset);
 
+  if(mpi_rank == 0){ 
+    printf("Written data space\n");
+  }
+
   rank = 2;
 
   dim2d[0] = ny;
-  dim2d[1] = nx*NumPEs;
+  dim2d[1] = nx*num_procs;
 
   dataspace = H5Screate_simple(rank, dim2d, NULL);
   
   start_2d[0] = 0;
-  start_2d[1] = MyPE*nx;
+  start_2d[1] = mpi_rank*nx;
 
   stride_2d[0] = 1;
   stride_2d[1] = 1;
@@ -153,17 +165,31 @@ int main(int argc, char *argv[]) {
     
   H5Fclose(file_identifier);
 
+  MPI_Barrier(MPI_COMM_WORLD);
+  
+  end_time = MPI_Wtime();
+
+  if(mpi_rank == 0){
+    printf("Created and written data in %lf seconds\n", end_time-start_time);
+  }
+
   free(data);
   free(dataArray);
 
   MPI_Finalize();
 
+  if(mpi_rank == 0){
+    printf("%d finished\n", mpi_rank);
+    fflush(stdout);
+  }
+
+  return 0;
 }
   
 
 
   
-void initialise_array(int nx, int ny, int ng, int MyPE, double **array) {
+void initialise_array(int nx, int ny, int ng, int mpi_rank, double **array) {
 
   int i, j;
 
@@ -179,7 +205,7 @@ void initialise_array(int nx, int ny, int ng, int MyPE, double **array) {
   for (j = ng; j < ny+ng; j++) {
     for (i = ng; i < nx+ng; i++) {
 
-      array[j][i] = (double) (i+j+100*MyPE);
+      array[j][i] = (double) (i+j+100*mpi_rank);
 
     }
   }
