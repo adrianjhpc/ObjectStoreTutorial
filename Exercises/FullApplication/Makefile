@@ -1,6 +1,5 @@
 CC=mpicc
 CFLAGS=-I/home/tu001/hdf5/1.14.5/include
-LDFLAGS=-L/home/tu001/hdf5/1.14.5/lib -lhdf5
 
 .PHONY: default
 default: hdf5 daos ceph
@@ -9,13 +8,13 @@ default: hdf5 daos ceph
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 hdf5: hdf5.o
-	$(CC) -o $@ hdf5.o $(LDFLAGS)
+	$(CC) -o $@ hdf5.o -L/home/tu001/hdf5/1.14.5/lib -lhdf5
 
 daos: daos.o
-	$(CC) -o $@ daos.o
+	$(CC) -o $@ daos.o -ldaos
 
 ceph: ceph.o
-	$(CC) -o $@ ceph.o $(LDFLAGS)
+	$(CC) -o $@ ceph.o -lrados
 
 clean:
 	rm -fr hdf5 daos ceph *.o
