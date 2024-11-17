@@ -1,2 +1,4 @@
 *.o
-example
+examplw
+hdf5_example*out
+hdf5_example*err
