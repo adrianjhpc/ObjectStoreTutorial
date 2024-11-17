@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
   // You can use the rados_create2 function to do this
   // clustername can be "ceph"
   // name can be set as "client.tutorial"
-  //ierr = rados_create2(NEEDS ARGUMENTS ADDED);
+  ierr = rados_create2(&cluster, "ceph", "client.tutorial", 0);
 
   // Add in error handling to skip the rest if the handle creation doesn't work but ensure we can still clean up safely.
   // Goto is a nasty programming approach, but serves a useful function for this error handling.
@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
   // Read in the Ceph configuration to setup the cluster object
   // For this you can use the rados_conf_read_file function
   // The location of the configuration file "/opt/apps/ceph/ceph.conf"
-  //ierr = rados_conf_read_file(NEEDS ARGUMENTS ADDED);
+  ierr = rados_conf_read_file(cluster, "/opt/apps/ceph/ceph.conf");
 
   if (ierr < 0) {
     printf("rados_conf_read_file failed\n");
@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
 
 
   // Now connect to the Ceph cluster using the rados_connect function
-  //ierr = rados_connect(NEEDS ARGUMENTS ADDED);
+  ierr = rados_connect(cluster);
 
   if (ierr < 0) {
     printf("rados_connect failed\n");
@@ -108,7 +108,7 @@ int main(int argc, char *argv[]) {
   // Now we need to connect to a ceph pool to use for I/O. This creates an io context for I/O operations
   // To do this you can use the rados_ioctl_create function, using the cluster variable you have recreated above
   // and the pool name as "default-pool"
-  //ierr = rados_ioctx_create(NEEDS ARGUMENTS ADDED);
+  ierr = rados_ioctx_create(cluster, "default-pool", &ioctx);
 
   if (ierr < 0 ) {
     printf("rados_ioctx_create failed %d %s\n", ierr, strerror(-ierr));
@@ -119,7 +119,7 @@ int main(int argc, char *argv[]) {
   // Now you need to create a librados namespace for your I/O.
   // This can be done using the rados_ioctx_set_namespace function
   // Use the ioctx variable you created above and use your ssh username, i.e. "tuXXX" for your namespace name
-  //rados_ioctx_set_namespace(NEEDS ARGUMENTS ADDED);
+  rados_ioctx_set_namespace(ioctx, "tu001");
 
   // Create object name to label this as a unique object in the namespace
   snprintf(objname, 100, "process-rank-%d", mpi_rank);
@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
   // For this you can use the rados_write function, using the ioctx and objname variables you have written above
   for (i = 0; i < ny+2*ng; i++) {
     // This is where to add the rados_write function. The buf variable can be data[i] and the offset can be i*(ny+2*ng) 
-    //ierr = rados_write(NEEDS ARGUMENTS ADDED);
+    ierr = rados_write(ioctx, objname, (const char *)data[i], ny*sizeof(data), i*(ny+2*ng)*sizeof(data));
     if (ierr < 0) {
       printf("rados_write failed %s\n", strerror(-ierr));
       goto ioctx_destroy;
@@ -152,13 +152,13 @@ int main(int argc, char *argv[]) {
   // The key_vector and objname_vector variables are the key and value arrays the function needs, along with the key_len and
   // objname_len sizes. The number of key value pairs to set is 1.
   // This links the key (i.e. rank-mpi_rank) to the object we created before (i.e. process-rank-mpi_rank)
-  //rados_write_op_omap_set2(NEEDS ARGUMENTS ADDED);
+  rados_write_op_omap_set2(write_op, (char const * const *) &key_vector, (char const * const *) &objname_vector, &key_len, &objname_len, 1);
 
   // Now create an object from this key-value pair. This collects together all the key-values pairs each process has created into a single object.
   // You can sue the rados_write_op_operate function to do this, using write_op and ioctx variables we have already created.
   // The object ID you can choose, but we would suggest "username-index", i.e "tu001-index". This will make it unique for your user in the CEph.
   // The mtime variable can be set to NULL and the flags can be set to 0.
-  //ierr = rados_write_op_operate(NEEDS ARGUMENTS ADDED);
+  ierr = rados_write_op_operate(write_op, ioctx, "tu004-index", NULL, 0);
 
   if (ierr < 0) {
     printf("rados rados_write_op_operate failed\n");
