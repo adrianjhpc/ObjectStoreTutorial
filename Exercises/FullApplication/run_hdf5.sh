@@ -31,10 +31,10 @@ sleep 2
 
 srun --oversubscribe -N 1 -n 1 mkdir -p $dfuse_path/$USER/data
 
-cp example $dfuse_path/$USER/data
+cp hdf5 $dfuse_path/$USER/data
 cd $dfuse_path/$USER/data
 
-srun --overlap --oversubscribe ./example
+srun --overlap --oversubscribe ./hdf5
 
 srun --oversubscribe -N 1 -n 1 rm -fr $dfuse_path/$USER
 

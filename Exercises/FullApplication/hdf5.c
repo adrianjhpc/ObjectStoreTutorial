@@ -139,7 +139,7 @@ int main(int argc, char *argv[]) {
   err = H5Sselect_hyperslab(dataspace, H5S_SELECT_SET, start_2d, stride_2d, count_2d, NULL);
 
   if(mpi_rank == 0){
-    printf("Total file size %d\n",dim2d[0]*dim2d[1]);
+    printf("Total file size %d (bytes)\n",dim2d[0]*dim2d[1]*sizeof(data));
   }
 
   dim2d[0] = ny+2*ng;
@@ -174,7 +174,7 @@ int main(int argc, char *argv[]) {
   end_time = MPI_Wtime();
 
   if(mpi_rank == 0){
-    printf("Individual process size %d\n",count_2d[0]*count_2d[1]);
+    printf("Individual process size %d (bytes)\n",count_2d[0]*count_2d[1]*sizeof(data));
   }
 
   free(data);
