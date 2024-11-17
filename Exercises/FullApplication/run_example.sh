@@ -36,8 +36,6 @@ cd $dfuse_path/$USER/data
 
 srun --overlap --oversubscribe ./example
 
-ls -lhrt $dfuse_path/$USER/data
-
 srun --oversubscribe -N 1 -n 1 rm -fr $dfuse_path/$USER
 
 srun --oversubscribe -N $SLURM_NNODES -n $SLURM_NNODES sudo umount $dfuse_path > /dev/null 2>&1
