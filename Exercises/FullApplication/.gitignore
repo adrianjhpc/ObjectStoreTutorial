@@ -1,10 +1,11 @@
 *.o
 hdf5
 ceph
-daos
+daos_individual
+daos_array
 hdf5_example*out
 hdf5_example*err
 daos_example*out
-daos_example*err
+daos*_example*err
 ceph_example*out
 ceph_example*err
