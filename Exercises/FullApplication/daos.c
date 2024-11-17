@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "hdf5.h"
+#include <daos.h>
 #include "mpi.h"
 
 void initialise_array(int, int, int, int, double **);
@@ -50,6 +50,9 @@ int main(int argc, char *argv[]) {
 
   initialise_array(nx, ny, ng, mpi_rank, data);
 
+  // Initialise DAOS to start with
+  ierr = daos_init();
+
   MPI_Barrier(MPI_COMM_WORLD);
 
   start_time = MPI_Wtime();
@@ -65,6 +68,15 @@ int main(int argc, char *argv[]) {
 
   free(data);
   free(dataArray);
+
+  // Finalise DAOS after everything is done
+  ierr = daos_fini();
+  if(ierr != 0){
+    printf("Error finalising DAOS\n");
+    perror("daos_fini");
+    MPI_Abort(MPI_COMM_WORLD, 0);
+  }
+
 
   MPI_Finalize();
 

@@ -46,8 +46,6 @@ int main(int argc, char *argv[]) {
 
   double start_time, end_time;
  
-  MPI_Status stat;
-
   MPI_Init(&argc, &argv);
   
   ierr = MPI_Comm_size(MPI_COMM_WORLD, &num_procs);

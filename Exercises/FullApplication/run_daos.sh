@@ -10,13 +10,5 @@
 
 module load openmpi 
 
-pool=default-pool
-cont=default-container
-dfuse_path=/tmp/parallelstore
-
-export pool=default-pool
-export cont=default-container
-export dfuse_path=/tmp/parallelstore
-
 srun ./daos
 
