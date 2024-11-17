@@ -1,4 +1,6 @@
 *.o
-examplw
+hdf5
+ceph
+daos
 hdf5_example*out
 hdf5_example*err
