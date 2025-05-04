@@ -5,10 +5,12 @@
 #SBATCH --job-name=daos_ind_example
 #SBATCH -o daos_individual_example.%A.out
 #SBATCH -e daos_individual_example.%A.err
-#SBATCH --tasks-per-node=32
+#SBATCH --tasks-per-node=48
 #SBATCH --cpus-per-task=1
 
-module load openmpi 
+module load mpi
+module load compiler
+
 
 srun ./daos_individual
 

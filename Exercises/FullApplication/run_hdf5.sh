@@ -5,20 +5,21 @@
 #SBATCH --job-name=hdf5_example
 #SBATCH -o hdf5_example.%A.out
 #SBATCH -e hdf5_example.%A.err
-#SBATCH --tasks-per-node=32
+#SBATCH --tasks-per-node=48
 #SBATCH --cpus-per-task=1
+#SBATCH --nvram-options=1LM:1000
 
-module load openmpi 
-
-export LD_LIBRARY_PATH=/home/tu001/hdf5/1.14.5/lib:$LD_LIBRARY_PATH
+module load compiler
+module load mpi
+module load hdf5
 
 pool=default-pool
 cont=default-container
-dfuse_path=/tmp/parallelstore
+dfuse_path=/tmp/daos
 
 export pool=default-pool
 export cont=default-container
-export dfuse_path=/tmp/parallelstore
+export dfuse_path=/tmp/daos
 
 srun -N $SLURM_NNODES -n $SLURM_NNODES sudo umount $dfuse_path > /dev/null 2>&1
 
