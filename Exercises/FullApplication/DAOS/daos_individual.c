@@ -311,6 +311,16 @@ int main(int argc, char *argv[]) {
   // Use the daos_array_close to close the array_handle and free the associated resources
   ierr = daos_array_close(array_handle, NULL);
 
+  // Now we want to create a key-value part to allow us to look up the array later if we want to 
+  // read back the data. This means linking the array object id with a key name which can be easily 
+  // searched. For this we can use the daos_kv_put() function. The transaction can be DAOS_TX_NONE, n
+  //
+  ierr = daos_kv_put(daos_handle_t oh, DAOS_TX_NONE,
+		uint64_t 	flags,
+		const char * 	key,
+		daos_size_t 	size,
+		const void * 	buf,
+		daos_event_t * 	ev )
 
   MPI_Barrier(MPI_COMM_WORLD);
   
