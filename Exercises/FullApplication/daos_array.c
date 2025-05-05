@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <daos.h>
+#include "uuid.h"
 #include "mpi.h"
 
 void initialise_array(int, int, int, int, double **);
