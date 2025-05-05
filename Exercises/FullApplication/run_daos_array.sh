@@ -11,6 +11,18 @@
 
 module load compiler
 module load mpi
+module load gnu/11.2.0 
+module load libfabric/latest
+
+export PSM2_MULTI_EP=1
+export PSM2_MULTIRAIL=1
+export PSM2_MULTIRAIL_MAP=0:1,1:1
+
+export PSM2_DEVICES=self,hfi,shm
+
+export DAOS_AGENT_DRPC_DIR=/var/daos_agent
+
+export FI_PROVIDER_PATH=/home/software/libfabric/latest/lib
 
 srun ./daos_array
 
