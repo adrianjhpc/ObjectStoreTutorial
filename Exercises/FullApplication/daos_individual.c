@@ -3,7 +3,6 @@
 #include <string.h>
 #include <daos.h>
 #include "mpi.h"
-#include "uuid.h"
 
 void initialise_array(int, int, int, int, double **);
 
