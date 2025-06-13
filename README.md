@@ -1,5 +1,5 @@
-# CUG25 Exploring High Performance Storage with DAOS
-This repository contains the slides and exercises for the CUG25 tutorial on Exploring High Performance Storage with DAOS
+# ISC25 Object Storage for High Performance I/O Tutorial
+This repository contains the slides and exercises for the ISC25 tutorial on Object Storage for High Performance I/O
 
 This contains material contributed from a number of authors and organsations, including:
 
@@ -11,19 +11,21 @@ This contains material contributed from a number of authors and organsations, in
 
 ## Timetable
 
-* 08.30 Introduction
-* 08.40 Overview of Object Stores and Storage Hardware
-* 09.25 Practical: Simple DAOS benchmarking
-* 09.30 DAOS programming API
-* 10.00 Break
-* 10.30 DAOS programming API
-* 10.45 Practical: Hands-on DAOS programming
-* 11.15 DAOS filesystems and operation
-* 11.45 Designing for object storage
-* 12.00 Summary and finish
+* 14.00 Introduction
+* 14.10 Object storage and storage hardware
+* 14.40 Practical: Benchmarking different storage approaches
+* 15.00 Overview of DAOS
+* 15.30 DAOS programming APIs
+* 16.00 Break
+* 16.30 Practical: Hands-on DAOS programming
+* 17.00 Ceph storage interfaces and librados
+* 17.15 Librados programming API
+* 17.30 Practical: Using DAOS and/or Ceph for applications
+* 17.50 Performance, design, and summary
+* 18.00 Finish
 
 ## Running
 
-The practical exercises will be run on EPCC resources Please visit [this page](Accounts.md) for 
+The practical exercises will be run on GCP resources Please visit [this page](Accounts.md) for 
 more details on how to access the system.
 
