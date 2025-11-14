@@ -1,6 +1,6 @@
-# ISC25 Object Storage for High Performance I/O Tutorial - Machine Accounts
+# SC25 Modern High Performance I/O: Leveraging Object Stores Tutorial - Machine Accounts
 
-You will be provided with an account for the platform we will use for exercises. For this you will need to send your email address and name to Nicolau Manubens (Nicolau.Manubens@ecmwf.int) along with the subject line "Object Storage Tutorial". We will provide you with an SSH key which you can then use to access the system using:
+You will be provided with an account for the platform we will use for exercises. For this you will need to send your email address and name to Adrian Jackson (a.jackson@epcc.ed.ac.u) along with the subject line "Object Storage Tutorial". We will provide you with an SSH key which you can then use to access the system using:
 
 chmod 600 id_rsa_tu123
 
