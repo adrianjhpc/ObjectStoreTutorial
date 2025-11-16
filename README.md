@@ -23,7 +23,7 @@ This contains material contributed from a number of authors and organsations, in
 * 11:00	Programmig with DAOS
 * 11:30	Ceph and LibRADOS
 * 12:00	Lunch		90 minute lunch reset
-* 13:30	MPI-I
+* 13:30	MPI-I/O
 * 14:00	Darshan
 * 14:30	I/O Libraries and Object Store
 * 15:00	Break		30 minute coffee/snack break
