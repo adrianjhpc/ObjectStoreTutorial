@@ -88,7 +88,7 @@ main(int argc, char **argv)
 	ASSERT(rc == 0, "pool connect failed: %s (%d)", d_errstr(rc), rc);
 
 	/** open container */
-	rc = daos_cont_open(poh, "cont1", DAOS_COO_RW, &coh, NULL, NULL);
+	rc = daos_cont_open(poh, "tutorial-container", DAOS_COO_RW, &coh, NULL, NULL);
 	ASSERT(rc == 0, "container open failed: %s (%d)", d_errstr(rc), rc);
 
 	run_daos_kv();

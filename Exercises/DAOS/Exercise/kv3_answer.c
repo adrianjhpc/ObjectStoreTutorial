@@ -141,7 +141,7 @@ main(int argc, char **argv)
 	ASSERT(rc == 0, "pool connect failed: %s (%d)", d_errstr(rc), rc);
 
 	/** create the container */
-	rc = daos_cont_create_with_label(poh, "cont1", NULL, NULL, NULL);
+	rc = daos_cont_create_with_label(poh, "tutorial-container", NULL, NULL, NULL);
 	ASSERT(rc == 0, "container create failed: %s (%d)", d_errstr(rc), rc);
 
 	/** open container */
@@ -153,7 +153,7 @@ main(int argc, char **argv)
 	rc = daos_cont_close(coh, NULL);
 	ASSERT(rc == 0, "cont close failed");
 
-	rc = daos_cont_destroy(poh, "cont1", 0, NULL);
+	rc = daos_cont_destroy(poh, "tutorial-container", 0, NULL);
 	ASSERT(rc == 0, "cont destroy failed");
 
 	rc = daos_pool_disconnect(poh, NULL);

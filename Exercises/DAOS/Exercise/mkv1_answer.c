@@ -144,7 +144,7 @@ out:
 	return;
 }
 
-#define CONT "cont5"
+#define CONT "tutorial-container"
 
 int
 main(int argc, char **argv)

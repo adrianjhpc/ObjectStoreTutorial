@@ -102,7 +102,7 @@ run_daos_kv()
 	ASSERT(rc == 0, "KV close failed");
 }
 
-#define CONT "cont3"
+#define CONT "tutorial-container"
 int
 main(int argc, char **argv)
 {

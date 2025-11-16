@@ -93,7 +93,7 @@ run_daos_kv()
 	printf("SUCCESS\n");
 }
 
-#define CONT "cont2"
+#define CONT "tutorial-container"
 
 int
 main(int argc, char **argv)
