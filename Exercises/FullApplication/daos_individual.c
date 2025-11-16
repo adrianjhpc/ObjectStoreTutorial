@@ -3,6 +3,7 @@
 #include <string.h>
 #include <daos.h>
 #include "mpi.h"
+#include "uuid.h"
 
 void initialise_array(int, int, int, int, double **);
 
@@ -25,10 +26,10 @@ int main(int argc, char *argv[]) {
   double start_time, end_time;
 
   // Hard code the pool name
-  const char *pool_string = "default-pool"; 
+  const char *pool_string = "tutorial"; 
 
   // Hard code the container name
-  const char *container_name = "default-container";
+  const char *container_name = "tutorial-container";
 
   // Data object name
   char objname[100];

@@ -1,23 +1,20 @@
 CC=mpicc
-CFLAGS=-I/home/tu001/hdf5/1.14.5/include
+CFLAGS=-I/home/software/phdf5/1.12.0/intelmpi/include
 
 .PHONY: default
-default: hdf5 daos_individual daos_array ceph
+default: hdf5 daos_individual daos_array 
 
 %.o: %.c
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 hdf5: hdf5.o
-	$(CC) -o $@ hdf5.o -L/home/tu001/hdf5/1.14.5/lib -lhdf5
+	$(CC) -o $@ hdf5.o -L/home/software/phdf5/1.12.0/intelmpi/lib -lhdf5
 
 daos_individual: daos_individual.o
-	$(CC) -o $@ daos_individual.o -ldaos -ldaos_common -luuid
+	$(CC) -o $@ daos_individual.o -ldaos -ldaos_common -L. -luuid
 
 daos_array: daos_array.o
-	$(CC) -o $@ daos_array.o -ldaos -ldaos_common -luuid
-
-ceph: ceph.o
-	$(CC) -o $@ ceph.o -lrados
+	$(CC) -o $@ daos_array.o -ldaos -ldaos_common -L. -luuid
 
 clean:
-	rm -fr hdf5 daos_individual daos_array ceph *.o
+	rm -fr hdf5 daos_individual daos_array  *.o
