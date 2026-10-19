@@ -33,4 +33,5 @@ daos cont create mypool pytorch_tut --type POSIX --dir-oclass SX --file-oclass S
 | `03_iterable_dataset.py` | `IterableDataset`: lazy batching, worker sharding |
 | `04_checkpoint.py` | `Checkpoint`: in-memory vs chunked writes, `reader(stream=)`, `class_name`, pitfalls |
 | `05_train_e2e.py` | tiny CNN trained from DAOS, checkpoints to DAOS, `--resume` |
-| `pydaos_torch_tutorial.pptx` | the deck |
+| `daos_overview.pptx` | DAOS introduction: concepts, API basics, POSIX on DAOS |
+| `pydaos_torch_tutorial.pptx` | the PyTorch data-loader / checkpoint deck |
