@@ -31,9 +31,8 @@ This contains material contributed from a number of authors and organsations, in
 * 15:30	I/O libraries Part 2
 * 16:00	I/O benchmarking principles & practice
 * 16:30	AI workloads
-* 17:00	Finish
+* 17:00	FinishInformation for running 
 
 ## Running
 
-
-
+There are instructions on how to get access to the test system for the benchmarking exercise and experimenting with DAOS in the [Exercises directory](Exercises/exercisesheet.pdf).
