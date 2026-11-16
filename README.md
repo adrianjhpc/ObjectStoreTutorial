@@ -1,5 +1,6 @@
-# SC25: Modern High Performance I/O: Leveraging Object Stores
-This repository contains the slides and exercises for the SC25 tutorial on Object Storage for High Performance I/O
+# SC26: Modern High-Performance I/O: Leveraging Files and Objects
+
+This repository contains the slides and exercises for the SC26 tutorial on Files and Object Storage for High Performance I/O
 
 This contains material contributed from a number of authors and organsations, including:
 
@@ -30,9 +31,9 @@ This contains material contributed from a number of authors and organsations, in
 * 15:30	I/O libraries Part 2
 * 16:00	I/O benchmarking principles & practice
 * 16:30	AI workloads
-* 17:00	Finish
+* 17:00	FinishInformation for running 
 
 ## Running
 
-We are still working out the details for how to run hands-on.  We've provided examples you are welcome to run on your own systems.
-
+There are instructions on how to get access to the test system for the benchmarking exercise and experimenting with DAOS in the [Exercises directory](Exercises/exercisesheet.pdf).
+  
